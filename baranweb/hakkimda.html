@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hakkımda - Baran Almaz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="keywords" content="baran , almaz,css,javascript,js,motor,code,yazılım">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SJ71EM9YH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6SJ71EM9YH');
+</script>
+
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="glow-overlay"></div>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <a href="index.html" class="logo"><i class="fas fa-motorcycle"></i> BARAN</a>
+                    
+                    <button class="hamburger" id="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <ul class="nav-links" id="nav-links">
+                        <li><a href="index.html" class="nav-link" data-en="Home" data-tr="Ana Sayfa">Ana Sayfa</a></li>
+                        <li><a href="galeri.html" class="nav-link" data-en="Gallery" data-tr="Galeri">Galeri</a></li>
+                        <li><a href="hakkimda.html" class="nav-link active" data-en="About" data-tr="Hakkımda">Hakkımda</a></li>
+                        <li><a href="iletisim.html" class="nav-link" data-en="Contact" data-tr="İletişim">İletişim</a></li>
+                        <div class="lang-buttons">
+                            <button class="lang-btn active" onclick="changeLanguage('tr')" id="lang-tr">TR</button>
+                            <button class="lang-btn" onclick="changeLanguage('en')" id="lang-en">EN</button>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1 data-en="About Me" data-tr="Hakkımda"><i class="fas fa-user-astronaut"></i> Hakkımda</h1>
+            
+            <div class="about-grid">
+
+                <div class="about-left">
+                    <img src="resimler/profile-photo.jpeg" onerror="this.src='https://placehold.co/400x400/111/00ff41?text=Baran+Almaz'" alt="Süleyman Baran Almaz" class="about-profile-img">
+                    <h2 class="about-name">Baran Almaz</h2>
+                    <span class="about-title" data-en="Student & Rider" data-tr="Öğrenci & Sürücü">Öğrenci & Sürücü</span>
+                    
+                    <ul class="info-list">
+                        <li><i class="fas fa-birthday-cake"></i> <span data-en="Born: Jan 23, 2006" data-tr="Doğum: 23 Ocak 2006">Doğum: 23 Ocak 2006</span></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span data-en="Location: Diyarbakir, TR" data-tr="Konum: Diyarbakır, TR">Konum: Diyarbakır, TR</span></li>
+                        <li><i class="fas fa-university"></i> <span data-en="Sinop University" data-tr="Sinop Üniversitesi">Sinop Üniversitesi</span></li>
+                        <li><i class="fas fa-envelope"></i> <span>seleyman.baran.almaz@gmail.com</span></li>
+                    </ul>
+                </div>
+
+                <div class="about-right">
+                    
+                    <div class="section-box">
+                        <h3 data-en="Education" data-tr="Eğitim"><i class="fas fa-graduation-cap"></i> Eğitim</h3>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-date">2024 - <span data-en="Present" data-tr="Günümüz">Günümüz</span></span>
+                                <h4 class="timeline-title" data-en="Internet & Network Technologies" data-tr="İnternet ve Ağ Teknolojileri">İnternet ve Ağ Teknolojileri</h4>
+                                <p class="timeline-desc" data-en="Sinop University - Ayancik Vocational School (1st Year)" data-tr="Sinop Üniversitesi - Ayancık Meslek Yüksekokulu (1. Sınıf)">Sinop Üniversitesi - Ayancık Meslek Yüksekokulu (1. Sınıf)</p>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-date">2020 - 2024</span>
+                                <h4 class="timeline-title" data-en="High School Education" data-tr="Lise Eğitimi">Lise Eğitimi</h4>
+                                <p class="timeline-desc" data-en="Ahmed-i Hani Anatolian High School" data-tr="Ahmed-i Hani Anadolu Lisesi">Ahmed-i Hani Anadolu Lisesi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section-box">
+                        <h3 data-en="Skills" data-tr="Yetenekler"><i class="fas fa-code"></i> Yetenekler</h3>
+                        
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>Network & Internet</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span>HTML / CSS</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Süleyman Baran Almaz. <span style="color:var(--accent-green)">|</span> <span data-en="All rights reserved." data-tr="Tüm hakları saklıdır.">Tüm hakları saklıdır.</span></p>
+        </div>
+    </footer>
+
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3 data-en="System Chat" data-tr="Sistem Sohbeti"><i class="fas fa-robot"></i> Sistem Sohbeti</h3>
+            <button onclick="toggleChatbot()" class="close-btn" style="color:black">×</button>
+        </div>
+        <div class="chatbot-messages" id="messages"></div>
+        <div class="quick-replies" id="quickReplies"></div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Komut girin..." data-placeholder-tr="Komut girin..." data-placeholder-en="Enter command...">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button class="chatbot-toggle" onclick="toggleChatbot()" data-en="Chat" data-tr="Sohbet"><i class="fas fa-comment-dots"></i> Sohbet</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

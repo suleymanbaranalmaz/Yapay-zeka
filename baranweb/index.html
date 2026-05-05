@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Sayfa - Baran Almaz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="keywords" content="baran , almaz,css,javascript,js,motor,code,yazılım">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SJ71EM9YH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6SJ71EM9YH');
+</script>
+
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="glow-overlay"></div>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <a href="index.html" class="logo"><i class="fas fa-motorcycle"></i> BARAN</a>
+                    
+                    <button class="hamburger" id="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <ul class="nav-links" id="nav-links">
+                        <li><a href="index.html" class="nav-link active" data-en="Home" data-tr="Ana Sayfa">Ana Sayfa</a></li>
+                        <li><a href="galeri.html" class="nav-link" data-en="Gallery" data-tr="Galeri">Galeri</a></li>
+                        <li><a href="hakkimda.html" class="nav-link" data-en="About" data-tr="Hakkımda">Hakkımda</a></li>
+                        <li><a href="iletisim.html" class="nav-link" data-en="Contact" data-tr="İletişim">İletişim</a></li>
+                        <div class="lang-buttons">
+                            <button class="lang-btn active" onclick="changeLanguage('tr')" id="lang-tr">TR</button>
+                            <button class="lang-btn" onclick="changeLanguage('en')" id="lang-en">EN</button>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 data-en="Süleyman Baran Almaz" data-tr="Süleyman Baran Almaz">Süleyman Baran Almaz</h1>
+                    <p class="baran" data-en="Motorcycle Rider & Tech Enthusiast." data-tr="Motorsiklet Sürücüsü & Teknoloji Tutkunu.">Motorsiklet Sürücüsü & Teknoloji Tutkunu.</p>
+                    <br>
+                    <p style="color: #aaa; font-size: 0.9rem;" data-en="Sinop University Student - Internet & Network Technologies" data-tr="Sinop Üniversitesi - İnternet ve Ağ Teknolojileri">Sinop Üniversitesi - İnternet ve Ağ Teknolojileri</p>
+                </div>
+                <div class="hero-image">
+                    <img src="resimler/profile-photo.jpeg" onerror="this.src='https://placehold.co/400x400/111/00ff41?text=Baran+Almaz'" alt="Süleyman Baran Almaz">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Süleyman Baran Almaz. <span style="color:var(--accent-green)">|</span> <span data-en="All rights reserved." data-tr="Tüm hakları saklıdır.">Tüm hakları saklıdır.</span></p>
+        </div>
+    </footer>
+
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3 data-en="System Chat" data-tr="Sistem Sohbeti"><i class="fas fa-robot"></i> Sistem Sohbeti</h3>
+            <button onclick="toggleChatbot()" class="close-btn" style="color:black">×</button>
+        </div>
+        <div class="chatbot-messages" id="messages"></div>
+        <div class="quick-replies" id="quickReplies"></div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Komut girin..." data-placeholder-tr="Komut girin..." data-placeholder-en="Enter command...">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button class="chatbot-toggle" onclick="toggleChatbot()" data-en="Chat" data-tr="Sohbet"><i class="fas fa-comment-dots"></i> Sohbet</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim - Baran Almaz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <meta name="keywords" content="baran , almaz,css,javascript,js,motor,code,yazılım">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6SJ71EM9YH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6SJ71EM9YH');
+</script>
+
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="glow-overlay"></div>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-content">
+                    <a href="index.html" class="logo"><i class="fas fa-motorcycle"></i> BARAN</a>
+                    
+                    <button class="hamburger" id="hamburger">
+                        <i class="fas fa-bars"></i>
+                    </button>
+
+                    <ul class="nav-links" id="nav-links">
+                        <li><a href="index.html" class="nav-link" data-en="Home" data-tr="Ana Sayfa">Ana Sayfa</a></li>
+                        <li><a href="galeri.html" class="nav-link" data-en="Gallery" data-tr="Galeri">Galeri</a></li>
+                        <li><a href="hakkimda.html" class="nav-link" data-en="About" data-tr="Hakkımda">Hakkımda</a></li>
+                        <li><a href="iletisim.html" class="nav-link active" data-en="Contact" data-tr="İletişim">İletişim</a></li>
+                        <div class="lang-buttons">
+                            <button class="lang-btn active" onclick="changeLanguage('tr')" id="lang-tr">TR</button>
+                            <button class="lang-btn" onclick="changeLanguage('en')" id="lang-en">EN</button>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="container">
+            <h1 data-en="Get In Touch" data-tr="Bağlantıya Geç"><i class="fas fa-satellite-dish"></i> Bağlantıya Geç</h1>
+            
+            <div class="contact-wrapper">
+                <div class="contact-info-panel">
+                    <h3 data-en="Contact Info" data-tr="İletişim Bilgileri"><i class="fas fa-id-card"></i> İletişim Bilgileri</h3>
+                    <p data-en="For any inquiries or just to say hi, feel free to contact me." data-tr="Sorularınız, projeleriniz veya tanışmak için aşağıdaki kanallardan ulaşabilirsiniz.">Sorularınız, projeleriniz veya tanışmak için aşağıdaki kanallardan ulaşabilirsiniz.</p>
+                    <br>
+
+                    <div class="contact-card">
+                        <div class="icon"><i class="fas fa-envelope"></i></div>
+                        <div class="info">
+                            <h4 data-en="Email Address" data-tr="E-posta Adresi">E-posta Adresi</h4>
+                            <a href="mailto:seleyman.baran.almaz@gmail.com">seleyman.baran.almaz@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="info">
+                            <h4 data-en="WhatsApp" data-tr="WhatsApp">WhatsApp</h4>
+                            <a href="https://wa.me/905526455321" target="_blank" data-en="Send Message" data-tr="Mesaj Gönder">Mesaj Gönder</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="icon"><i class="fab fa-instagram"></i></div>
+                        <div class="info">
+                            <h4 data-en="Instagram" data-tr="Instagram">Instagram</h4>
+                            <a href="https://www.instagram.com/baran.almaz21/" target="_blank">@baran.almaz21</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-card">
+                        <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="info">
+                            <h4 data-en="Location" data-tr="Konum">Konum</h4>
+                            <p data-en="Diyarbakir, Turkey" data-tr="Diyarbakır, Türkiye">Diyarbakır, Türkiye</p>
+                        </div>
+                    </div>
+
+                    <div class="map-container">
+                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d199342.3484556428!2d40.11925345!3d37.9158785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40751f652b71458b%3A0x7d6722d7d825c92c!2sDiyarbak%C4%B1r!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <form class="contact-form-panel" onsubmit="event.preventDefault(); submitForm(this);">
+                    <h3 data-en="Send Message" data-tr="Mesaj Gönder"><i class="fas fa-paper-plane"></i> Mesaj Gönder</h3>
+                    
+                    <div class="form-group">
+                        <input type="text" placeholder="Adınız Soyadınız" data-placeholder-tr="Adınız Soyadınız" data-placeholder-en="Full Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" placeholder="E-posta Adresiniz" data-placeholder-tr="E-posta Adresiniz" data-placeholder-en="Email Address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Mesajınız..." data-placeholder-tr="Mesajınız..." data-placeholder-en="Your Message..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" data-en="SEND MESSAGE" data-tr="MESAJI GÖNDER">MESAJI GÖNDER</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Süleyman Baran Almaz. <span style="color:var(--accent-green)">|</span> <span data-en="All rights reserved." data-tr="Tüm hakları saklıdır.">Tüm hakları saklıdır.</span></p>
+        </div>
+    </footer>
+
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3 data-en="System Chat" data-tr="Sistem Sohbeti"><i class="fas fa-robot"></i> Sistem Sohbeti</h3>
+            <button onclick="toggleChatbot()" class="close-btn" style="color:black">×</button>
+        </div>
+        <div class="chatbot-messages" id="messages"></div>
+        <div class="quick-replies" id="quickReplies"></div>
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Komut girin..." data-placeholder-tr="Komut girin..." data-placeholder-en="Enter command...">
+            <button onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+    <button class="chatbot-toggle" onclick="toggleChatbot()" data-en="Chat" data-tr="Sohbet"><i class="fas fa-comment-dots"></i> Sohbet</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
