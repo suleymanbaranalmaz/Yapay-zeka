@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega Breakout - 10 Seviye</title>
+    <style>
+        :root { --primary: #00d2ff; --secondary: #3a7bd5; --accent: #ff007b; }
+        body { 
+            background: #0f0c29; 
+            background: linear-gradient(to bottom, #24243e, #302b63, #0f0c29);
+            color: white; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; margin: 0; overflow: hidden;
+        }
+        #menu, #game-container { text-align: center; background: rgba(0, 0, 0, 0.6); padding: 30px; border-radius: 20px; border: 2px solid var(--primary); box-shadow: 0 0 30px rgba(0, 210, 255, 0.3); }
+        #game-container { display: none; }
+        canvas { background: #000; border-radius: 10px; cursor: none; box-shadow: 0 0 15px rgba(255,255,255,0.1); }
+        h1 { font-size: 3rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 20px; color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+        .btn {
+            background: var(--primary); border: none; padding: 15px 40px; color: white; font-size: 1.2rem;
+            font-weight: bold; border-radius: 50px; cursor: pointer; transition: 0.3s; margin: 10px;
+        }
+        .btn:hover { background: var(--accent); transform: scale(1.1); box-shadow: 0 0 20px var(--accent); }
+        .stats { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 1.1rem; color: var(--primary); }
+        .level-badge { background: var(--accent); padding: 5px 15px; border-radius: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- ANA MENÜ -->
+    <div id="menu">
+        <h1>MEGA BREAKOUT</h1>
+        <p>10 Seviyeli Macera Başlıyor!</p>
+        <div id="level-list">
+            <!-- JavaScript ile doldurulacak -->
+        </div>
+        <button class="btn" onclick="startGame(1)">OYUNA BAŞLA</button>
+    </div>
+
+    <!-- OYUN ALANI -->
+    <div id="game-container">
+        <div class="stats">
+            <span>Puan: <b id="score-text">0</b></span>
+            <span class="level-badge">LEVEL: <span id="level-text">1</span></span>
+            <span>Can: <b id="lives-text">3</b></span>
+        </div>
+        <canvas id="gameCanvas" width="600" height="400"></canvas>
+        <p style="font-size: 0.8rem; color: #aaa; margin-top: 10px;">İpucu: Parlayan bloklardan düşenleri yakala!</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        
+        // Elementler
+        const menu = document.getElementById("menu");
+        const gameContainer = document.getElementById("game-container");
+        const scoreText = document.getElementById("score-text");
+        const levelText = document.getElementById("level-text");
+        const livesText = document.getElementById("lives-text");
+
+        // Oyun Durumu
+        let score = 0;
+        let lives = 3;
+        let currentLevel = 1;
+        let gameActive = false;
+        let powerUps = [];
+
+        // Top ve Pedal
+        let ballRadius = 8;
+        let x, y, dx, dy;
+        let paddleHeight = 12;
+        let paddleWidth = 90;
+        let paddleX;
+
+        // Bloklar
+        let brickRowCount, brickColumnCount;
+        const brickWidth = 75;
+        const brickHeight = 20;
+        const brickPadding = 10;
+        const brickOffsetTop = 40;
+        const brickOffsetLeft = 35;
+        let bricks = [];
+
+        function initLevel(level) {
+            currentLevel = level;
+            levelText.innerText = level;
+            // Zorluk artışı
+            brickRowCount = 2 + Math.floor(level / 2);
+            brickColumnCount = 6;
+            dx = 2 + (level * 0.5); // Her levelde top hızlanır
+            dy = -(2 + (level * 0.5));
+            paddleWidth = Math.max(40, 100 - (level * 5)); // Level arttıkça pedal küçülür
+            
+            x = canvas.width / 2;
+            y = canvas.height - 30;
+            paddleX = (canvas.width - paddleWidth) / 2;
+
+            bricks = [];
+            for(let c=0; c<brickColumnCount; c++) {
+                bricks[c] = [];
+                for(let r=0; r<brickRowCount; r++) {
+                    // %15 ihtimalle özel güç içeren blok
+                    let isSpecial = Math.random() < 0.15;
+                    bricks[c][r] = { x: 0, y: 0, status: 1, special: isSpecial };
+                }
+            }
+        }
+
+        function startGame(level) {
+            menu.style.display = "none";
+            gameContainer.style.display = "block";
+            score = 0;
+            lives = 3;
+            scoreText.innerText = score;
+            livesText.innerText = lives;
+            initLevel(level);
+            gameActive = true;
+            powerUps = [];
+            draw();
+        }
+
+        document.addEventListener("mousemove", (e) => {
+            let relativeX = e.clientX - canvas.getBoundingClientRect().left;
+            if(relativeX > 0 && relativeX < canvas.width) {
+                paddleX = relativeX - paddleWidth / 2;
+            }
+        });
+
+        function collisionDetection() {
+            for(let c=0; c<brickColumnCount; c++) {
+                for(let r=0; r<brickRowCount; r++) {
+                    let b = bricks[c][r];
+                    if(b.status == 1) {
+                        if(x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                            dy = -dy;
+                            b.status = 0;
+                            score += 10;
+                            scoreText.innerText = score;
+
+                            if(b.special) {
+                                powerUps.push({x: b.x + brickWidth/2, y: b.y, type: 'extraLife'});
+                            }
+
+                            if(score >= brickRowCount * brickColumnCount * 10 * currentLevel) {
+                                if(currentLevel < 10) {
+                                    alert("LEVEL TAMAMLANDI! SIRADAKİ SEVİYE: " + (currentLevel + 1));
+                                    initLevel(currentLevel + 1);
+                                } else {
+                                    alert("EFSANESİN! TÜM OYUNU BİTİRDİN!");
+                                    location.reload();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+            ctx.fillStyle = "#fff";
+            ctx.shadowBlur = 10;
+            ctx.shadowColor = "#fff";
+            ctx.fill();
+            ctx.closePath();
+            ctx.shadowBlur = 0;
+        }
+
+        function drawPaddle() {
+            ctx.beginPath();
+            ctx.roundRect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight, 5);
+            ctx.fillStyle = "#00d2ff";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawBricks() {
+            for(let c=0; c<brickColumnCount; c++) {
+                for(let r=0; r<brickRowCount; r++) {
+                    if(bricks[c][r].status == 1) {
+                        let brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                        let brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                        bricks[c][r].x = brickX;
+                        bricks[c][r].y = brickY;
+                        
+                        ctx.beginPath();
+                        ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                        ctx.fillStyle = bricks[c][r].special ? "#ff007b" : "#3a7bd5";
+                        ctx.fill();
+                        ctx.strokeStyle = "rgba(255,255,255,0.5)";
+                        ctx.stroke();
+                        ctx.closePath();
+                    }
+                }
+            }
+        }
+
+        function drawPowerUps() {
+            powerUps.forEach((p, index) => {
+                p.y += 2;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 10, 0, Math.PI*2);
+                ctx.fillStyle = "#ff007b";
+                ctx.fill();
+                ctx.closePath();
+
+                // Pedal yakalarsa
+                if(p.y > canvas.height - paddleHeight && p.x > paddleX && p.x < paddleX + paddleWidth) {
+                    lives++;
+                    livesText.innerText = lives;
+                    powerUps.splice(index, 1);
+                }
+            });
+        }
+
+        function draw() {
+            if(!gameActive) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawBricks();
+            drawBall();
+            drawPaddle();
+            drawPowerUps();
+            collisionDetection();
+
+            if(x + dx > canvas.width - ballRadius || x + dx < ballRadius) dx = -dx;
+            if(y + dy < ballRadius) dy = -dy;
+            else if(y + dy > canvas.height - ballRadius) {
+                if(x > paddleX && x < paddleX + paddleWidth) {
+                    dy = -dy;
+                } else {
+                    lives--;
+                    livesText.innerText = lives;
+                    if(!lives) {
+                        alert("OYUN BİTTİ! Skorun: " + score);
+                        location.reload();
+                    } else {
+                        x = canvas.width/2;
+                        y = canvas.height-30;
+                        dx = 3 + currentLevel;
+                        dy = -(3 + currentLevel);
+                    }
+                }
+            }
+
+            x += dx;
+            y += dy;
+            requestAnimationFrame(draw);
+        }
+    </script>
+</body>
+</html>
